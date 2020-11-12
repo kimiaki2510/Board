@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_141535) do
+ActiveRecord::Schema.define(version: 2020_11_12_142536) do
+
+  create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.string "deadline"
+    t.text "explanation"
+    t.bigint "user_id"
+    t.bigint "table_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["table_id"], name: "index_cards_on_table_id"
+    t.index ["user_id"], name: "index_cards_on_user_id"
+  end
+
+  create_table "lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id"
+    t.bigint "table_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["table_id"], name: "index_lists_on_table_id"
+    t.index ["user_id"], name: "index_lists_on_user_id"
+  end
 
   create_table "tables", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -30,5 +52,9 @@ ActiveRecord::Schema.define(version: 2020_11_12_141535) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "cards", "tables"
+  add_foreign_key "cards", "users"
+  add_foreign_key "lists", "tables"
+  add_foreign_key "lists", "users"
   add_foreign_key "tables", "users"
 end
