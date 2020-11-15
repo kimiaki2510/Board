@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :tom, class: User do
     name             { 'Tom' }
-    email            { 'tom@tom.com' }
+    email            { 't_tom@tom.com' }
     password         { "tom1234" }
     password_digest  { "tom1234" }
     #image            { "" }

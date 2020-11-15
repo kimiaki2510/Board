@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :destroy]
+  #before_action :set_user, only: [:show, :destroy]
 
   def index
     user = User.all
@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
-    set_user
+    user = User.find(params[:id])
     render json: { data: user }
   end
 
@@ -21,19 +21,14 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def destroy
-    set_user
+    user = User.find(params[:id])
     user.destroy
     render json: { data: user }
   end
 
   private
 
-    def set_user
-      user = User.find(params[:id])
-    end
-
     def user_params
       params.require(:user).permit(:name, :email, :password_digest)
     end
-
 end

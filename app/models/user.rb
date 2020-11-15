@@ -11,7 +11,5 @@ class User < ApplicationRecord
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
   validates :introduce, length: { maximum: 200 }
-  validates :password, presence: true
-  validates :password_digest, presence: true
   has_secure_password
 end
