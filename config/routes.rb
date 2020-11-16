@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   namespace :api, format: 'json' do
     namespace :v1 do
-      resources :users, only: %i[index show new create]
-      resources :tables, only: %i[index show new create]
-      resources :cards, only: %i[index show new create]
-      resources :lists, only: %i[index show new create]
+      resources :users, only: %i[index show create destroy]
+      resources :tables, only: %i[index show create destroy]
+      resources :cards, only: %i[index show create destroy]
+      resources :lists, only: %i[index show create destroy]
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

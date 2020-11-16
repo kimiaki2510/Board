@@ -11,14 +11,12 @@ RSpec.describe 'Api::V1::Users', type: :request do
   end
 
   describe 'GET /show' do
-    it 'returns http 200' do      
+    it 'returns http 200' do
     end
   end
 
   describe 'POST /create' do
-    it 'returns http success' do
-      post "/api/v1/users"
-      expect(response.status).to eq 200
+    it 'returns http success' do      
     end
   end
 
