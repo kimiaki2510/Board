@@ -32,6 +32,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
 
   describe 'POST /create' do
     it 'returns http success' do
+      #expect(response.status).to eq(201)
     end
   end
 

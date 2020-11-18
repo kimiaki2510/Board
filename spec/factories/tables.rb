@@ -3,4 +3,8 @@ FactoryBot.define do
     title { 'MyString' }
     user { nil }
   end
+
+  factory :iphone, class: Table do
+    title { 'apple' }
+  end
 end
