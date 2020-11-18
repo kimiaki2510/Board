@@ -15,4 +15,12 @@ FactoryBot.define do
     password_digest  { 'taro1234' }
     introduce        { 'I am Taro1'*20 }    #200文字
   end
+
+  factory :jiro, class: User do
+    name              { 'jiro' }
+    email            { 'jiro@jiro.com' }
+    password         { 'jiro1234' }
+    password_digest  { 'jiro1234' }
+    introduce        { 'I am Jiro' }
+  end
 end
