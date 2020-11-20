@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api, format: 'json' do
-    namespace :v1 do
+    namespace :v1 do  
       resources :users, only: %i[index show create destroy]
       resources :tables, only: %i[index show create destroy]
       resources :cards, only: %i[create destroy]

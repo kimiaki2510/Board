@@ -2,8 +2,13 @@ class Api::V1::UsersController < ApplicationController
   #before_action :set_user, only: [:show, :destroy]
 
   def index
-    user = User.all
-    render json: { data: user }
+    if params[:password]
+      current_user = User.find_by(password: params[:password])
+      render json: { data: current_user }
+    else
+      users = User.all
+      render json: { data: users }
+    end
   end
 
   def show
@@ -29,6 +34,6 @@ class Api::V1::UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password_digest)
+      params.require(:user).permit(:name, :email, :password, :password_digest)
     end
 end
