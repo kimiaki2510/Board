@@ -31,6 +31,13 @@ class Api::V1::UsersController < ApplicationController
     render json: { data: user }
   end
 
+  def login
+    current_user = User.find(email: user_params[:email], password: user_params[:password])
+    return render json: { status: 422, message: '認証に失敗しました'} unless current_user
+  rescue => e
+    logger.error(e.message)
+  end
+
   private
 
     def user_params
