@@ -1,32 +1,36 @@
 class Api::V1::TablesController < ApplicationController
   def index
-    records = current_user.records.all
-    render json: { data: records }
+    tables = current_user.tables.all
+    render json: { data: tables }
   end
 
   def show
-    record = current_user.records.find(params[:id])
-    render json: { data: record }
+    table = current_user.tables.find(params[:id])
+    render json: { data: table }
   end
 
   def create
-    record = Record.new(record_params)
-    if record.save
-      render json: { status: 201, data: record }
+    table = Table.new(table_params)
+    if table.save
+      render json: { status: 201, data: table }
     else
-      render json: { status: 422, data: record }
+      render json: { status: 422, data: table }
     end
   end
 
   def destroy
-    record = Record.find(params[:id])
-    record.destroy
-    render json: { data: record }
+    table = Table.find(params[:id])
+    table.destroy
+    render json: { data: table }
   end
 
   private
 
-  def record_params
+  def current_user
+    current_user = User.find(email: params[:email], password: params[:password])
+  end
+
+  def table_params
     params.require(:table).permit(:title)
   end
 end
