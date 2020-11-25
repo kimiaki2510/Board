@@ -1,11 +1,12 @@
 class Api::V1::TablesController < ApplicationController
   def index
-    tables = current_user.tables.all
-    render json: { data: tables }
+    tables = Table.all
+    table = tables.joins(:user).pluck(:id, :title, :name)
+    render json: { data: table }
   end
 
   def show
-    table = current_user.tables.find(params[:id])
+    table = Table.find(params[:id])
     render json: { data: table }
   end
 
