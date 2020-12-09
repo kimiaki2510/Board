@@ -2,9 +2,9 @@ class Api::V1::UsersController < ApplicationController
   #before_action :set_user, only: [:show, :destroy]
 
   def index
-    if params[:password]
-      current_user = User.find_by(password: params[:password])
-      render json: { data: current_user }
+    if params[:uid]
+      user = User.find_by(uid: params[:uid])
+      render json: { data: user }
     else
       users = User.all
       render json: { data: users }
@@ -25,17 +25,13 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def update
+  end
+
   def destroy
     user = User.find(params[:id])
     user.destroy
     render json: { data: user }
-  end
-
-  def login
-    current_user = User.find(email: user_params[:email], password: user_params[:password])
-    return render json: { status: 422, message: '認証に失敗しました'} unless current_user
-  rescue => e
-    logger.error(e.message)
   end
 
   private
