@@ -1,7 +1,6 @@
 class User < ApplicationRecord
 
-  #relation
-  has_many :tables
+  #relation  
   has_many :cards
   has_many :lists
 

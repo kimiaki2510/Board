@@ -4,7 +4,7 @@ class CreateCards < ActiveRecord::Migration[5.2]
       t.string :title
       t.string :deadline
       t.text :explanation
-      t.references :user, foreign_key: true
+      #t.references :user, foreign_key: true
       t.references :table, foreign_key: true
 
       t.timestamps

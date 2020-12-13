@@ -1,8 +1,7 @@
 class Api::V1::TablesController < ApplicationController
   def index
     tables = Table.all
-    table = tables.joins(:user).pluck(:id, :title, :name)
-    render json: { data: table }
+    render json: { data: tables }
   end
 
   def show
@@ -26,10 +25,6 @@ class Api::V1::TablesController < ApplicationController
   end
 
   private
-
-  def current_user
-    current_user = User.find(email: params[:email], password: params[:password])
-  end
 
   def table_params
     params.require(:table).permit(:title)
