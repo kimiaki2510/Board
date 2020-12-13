@@ -3,7 +3,7 @@ class Api::V1::CardsController < ApplicationController
     table = Table.find(params[:table_id])
     card = table.cards.build(card_params)
     if card.save
-      render json: { status: 200, data: card }
+      render json: { status: 200, data: card}
     else
       render json: { status: 422}
     end
